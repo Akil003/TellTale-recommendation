@@ -1,12 +1,14 @@
 import pandas as pd
 from flask import Flask, request
 from sklearn.metrics.pairwise import cosine_similarity
+from flask_cors import CORS, cross_origin
 
 ids = pd.read_json('./ids.json')
 feature_matrix = pd.read_json('./feature_matrix.json')
 
 app = Flask(__name__)
-app.debug = True
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/')
 def hello():
